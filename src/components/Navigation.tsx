@@ -2,20 +2,20 @@ import Link from "next/link";
 
 type NavigationProps = {
   navigation: NavigationLink[];
-  mobile: boolean;
+  stacked?: boolean;
   onClick?: () => void;
 };
 
 export type NavigationLink = { link: string; text: string };
 
-const Navigation = ({ navigation, mobile, onClick }: NavigationProps) => {
+const Navigation = ({ navigation, stacked, onClick }: NavigationProps) => {
   return navigation?.length ? (
-    <ul className={`${!mobile && "flex-1 justify-end hidden md:flex"}`}>
+    <ul className={`${!stacked && "justify-end hidden md:flex md:gap-3"}`}>
       {navigation.map((item) => (
         <li
           key={item.link}
           className={
-            "text-gray-600 md:px-5 py-2.5 hover:underline hover:text-gray-900 tracking-wider lowercase"
+            "text-gray-600 tracking-wider lowercase py-2.5 hover:underline hover:text-gray-900"
           }
           onClick={onClick}
         >

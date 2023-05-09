@@ -8,17 +8,17 @@ import Modal from "src/components/Modal";
 
 type HeaderProps = {
   logo?: { src: string; alt: string };
-  navigation: NavigationLink[];
+  navigation?: NavigationLink[];
 };
 
-const Header = ({ logo, navigation }: HeaderProps) => {
+export default function Header({ logo, navigation }: HeaderProps) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const scrollHeight = useScrollPosition();
 
   return (
     <>
       <header
-        className={`py-5 px-5 md:px-10 md:py-0 min-w-full fixed drop-shadow-sm transition-height duration-500 ease-in-out ${
+        className={`py-5 px-5 md:px-10 md:py-0 min-w-full fixed drop-shadow-sm transition-height duration-500 ease-in-out z-10 ${
           scrollHeight < 60 && "h-20"
         }`}
       >
@@ -37,7 +37,7 @@ const Header = ({ logo, navigation }: HeaderProps) => {
           )}
           {navigation?.length && (
             <>
-              <Navigation navigation={navigation} mobile={false} />
+              <Navigation navigation={navigation} />
               {isMobileNavOpen ? (
                 <XMarkIcon
                   onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
@@ -53,24 +53,24 @@ const Header = ({ logo, navigation }: HeaderProps) => {
           )}
         </nav>
       </header>
-      <Modal
-        onClose={() => setIsMobileNavOpen(false)}
-        isOpen={isMobileNavOpen}
-        backgroundClassName={
-          "fixed z-1 left-0 top-0 w-full h-full overflow-auto top-20"
-        }
-        bodyClassName={
-          "fixed md:hidden right-0 top-20 h-full w-2/4 text-end p-10 bg-[rgb(var(--background-start-rgb))]"
-        }
-      >
-        <Navigation
-          navigation={navigation}
-          mobile={true}
-          onClick={() => setIsMobileNavOpen(false)}
-        />
-      </Modal>
+      {navigation?.length && (
+        <Modal
+          onClose={() => setIsMobileNavOpen(false)}
+          isOpen={isMobileNavOpen}
+          backgroundClassName={
+            "fixed z-10 left-0 top-0 w-full h-full overflow-auto top-20"
+          }
+          bodyClassName={
+            "fixed md:hidden right-0 top-20 h-full w-2/4 text-end p-5 bg-[rgb(var(--background-start-rgb))]"
+          }
+        >
+          <Navigation
+            navigation={navigation}
+            stacked={true}
+            onClick={() => setIsMobileNavOpen(false)}
+          />
+        </Modal>
+      )}
     </>
   );
-};
-
-export default Header;
+}
