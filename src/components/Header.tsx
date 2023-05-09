@@ -19,7 +19,7 @@ export default function Header({ logo, navigation }: HeaderProps) {
     <>
       <header
         className={`py-5 px-5 md:px-10 md:py-0 min-w-full fixed drop-shadow-sm transition-height duration-500 ease-in-out z-10 ${
-          scrollHeight < 60 && "h-20"
+          scrollHeight < 60 ? "h-20" : "h-14"
         }`}
       >
         <nav className="flex flex-row items-center justify-between min-h-full">
