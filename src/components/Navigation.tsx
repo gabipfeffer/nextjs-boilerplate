@@ -15,7 +15,7 @@ const Navigation = ({ navigation, stacked, onClick }: NavigationProps) => {
         <li
           key={item.link}
           className={
-            "text-gray-600 tracking-wider lowercase py-2.5 hover:underline hover:text-gray-900"
+            "text-[rgb(var(--foreground-rgb))] tracking-wider lowercase hover:underline hover:text-gray-900"
           }
           onClick={onClick}
         >
