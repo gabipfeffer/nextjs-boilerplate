@@ -24,7 +24,7 @@ const Navigation = ({ navigation, stacked, onClick }: NavigationProps) => {
           onClick={onClick}
         >
           <Link
-            className={`${
+            className={`text-xs md:text-base ${
               pathname === item.link
                 ? "bg-[rgb(var(--foreground-rgb))] text-[rgb(var(--background-start-rgb))] rounded-2xl text-white py-1 px-2"
                 : "text-[rgb(var(--foreground-rgb))] px-2"

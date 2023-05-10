@@ -14,7 +14,7 @@ export default function SplitScreen({
   const [left, right] = children;
 
   return (
-    <div className={`fixed flex top-20 min-w-full`}>
+    <div className={`fixed flex min-w-full`}>
       <div
         className={`min-h-full flex-${leftWeight} bg-[rgb(var(--background-start-rgb))]`}
       >

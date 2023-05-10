@@ -3,7 +3,6 @@ import Image from "next/image";
 import Navigation, { NavigationLink } from "src/components/Navigation";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import useScrollPosition from "src/hooks/useScrollPosition";
 import Modal from "src/components/Modal";
 
 type HeaderProps = {
@@ -13,14 +12,13 @@ type HeaderProps = {
 
 export default function Header({ logo, navigation }: HeaderProps) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const scrollHeight = useScrollPosition();
 
   return (
     <>
       <header
-        className={`py-5 px-5 md:px-10 md:py-0 min-w-full fixed drop-shadow-sm transition-height duration-500 ease-in-out z-10 ${
-          scrollHeight < 60 ? "h-20" : "h-14"
-        }`}
+        className={
+          "py-5 px-5 md:px-10 md:py-0 min-w-full fixed drop-shadow-sm transition-height duration-500 ease-in-out z-10 h-20"
+        }
       >
         <nav className="flex flex-row items-center justify-between min-h-full">
           {logo && (

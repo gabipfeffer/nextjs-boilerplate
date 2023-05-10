@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "src/components/Header";
+import { navigation } from "src/constants/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,11 +15,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const navigation = [
-    { link: "/", text: "Home" },
-    { link: "/splitscreen", text: "Split Screen" },
-  ];
-
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -26,7 +22,7 @@ export default function RootLayout({
           logo={{ src: "/vercel.svg", alt: "vercel logo" }}
           navigation={navigation}
         />
-        <main>{children}</main>
+        <main className={"absolute top-20"}>{children}</main>
       </body>
     </html>
   );
