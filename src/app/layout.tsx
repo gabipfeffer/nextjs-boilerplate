@@ -22,7 +22,7 @@ export default function RootLayout({
           logo={{ src: "/vercel.svg", alt: "vercel logo" }}
           navigation={navigation}
         />
-        <main className={"absolute top-20"}>{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   );
