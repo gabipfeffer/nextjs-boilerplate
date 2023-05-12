@@ -14,14 +14,18 @@ export default function SplitScreen({
   const [left, right] = children;
 
   return (
-    <div className={`fixed flex min-w-full`}>
+    <div className={`flex w-full fixed top-20`}>
       <div
-        className={`min-h-full flex-${leftWeight} bg-[rgb(var(--background-start-rgb))]`}
+        className={`flex-${leftWeight} bg-[rgb(var(--background-start-rgb))] ${
+          leftWeight && "w-full"
+        }`}
       >
         {left}
       </div>
       <div
-        className={`min-h-full min-w-full flex-${rightWeight} bg-[rgb(var(--background-main-content))] text-[rgb(var(--foreground-rgb))]`}
+        className={`flex-${rightWeight} bg-[rgb(var(--background-main-content))] text-[rgb(var(--foreground-rgb))] ${
+          rightWeight && "w-full"
+        }`}
       >
         {right}
       </div>

@@ -14,13 +14,13 @@ export default function SplitScreenLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SplitScreen leftWeight={1} rightWeight={0}>
-      <div className={"px-1 md:px-5 py-5 md:min-w-[8rem]"}>
+    <SplitScreen leftWeight={0} rightWeight={1}>
+      <div className={"px-1 md:px-5 py-5 w-full md:min-w-[8rem]"}>
         <Navigation navigation={navigation} stacked={true} />
       </div>
       <div
         className={
-          "px-1 md:px-5 py-5 h-screen min-w-full overflow-y-scroll scrollbar-hide"
+          "px-1 md:px-5 py-5 h-screen overflow-y-scroll scrollbar-hide"
         }
       >
         {children}
