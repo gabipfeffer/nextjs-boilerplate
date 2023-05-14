@@ -1,7 +1,6 @@
 import "../globals.css";
 import SplitScreen from "src/components/SplitScreen";
-import Navigation from "src/components/Navigation";
-import { navigation } from "src/constants/navigation";
+import Sidebar from "src/components/Sidebar";
 
 export const metadata = {
   title: "SplitScreen Layout",
@@ -15,9 +14,7 @@ export default function SplitScreenLayout({
 }) {
   return (
     <SplitScreen leftWeight={0} rightWeight={1}>
-      <div className={"px-1 md:px-5 py-5 w-full md:min-w-[8rem]"}>
-        <Navigation navigation={navigation} stacked={true} />
-      </div>
+      <Sidebar>Sidebar</Sidebar>
       <div
         className={
           "px-1 md:px-5 py-5 h-screen overflow-y-scroll scrollbar-hide"
