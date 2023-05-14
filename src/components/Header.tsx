@@ -4,6 +4,8 @@ import Navigation, { NavigationLink } from "src/components/Navigation";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Modal from "src/components/Modal";
+import { signOut, useSession } from "next-auth/react";
+import UserSessionImage from "src/components/UserSessionImage";
 
 type HeaderProps = {
   logo?: { src: string; alt: string };
@@ -12,7 +14,7 @@ type HeaderProps = {
 
 export default function Header({ logo, navigation }: HeaderProps) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-
+  const { data: session } = useSession();
   return (
     <>
       <header
@@ -33,22 +35,31 @@ export default function Header({ logo, navigation }: HeaderProps) {
               />
             </a>
           )}
-          {navigation?.length && (
-            <>
-              <Navigation navigation={navigation} />
-              {isMobileNavOpen ? (
-                <XMarkIcon
-                  onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-                  className="block md:hidden text-black w-10 h-10"
-                />
-              ) : (
-                <Bars3Icon
-                  onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-                  className="block md:hidden text-black w-10 h-10"
-                />
-              )}
-            </>
-          )}
+          <div className={"flex items-center md:gap-3"}>
+            {navigation?.length && (
+              <>
+                <Navigation navigation={navigation} />
+                {isMobileNavOpen ? (
+                  <XMarkIcon
+                    onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                    className="block md:hidden text-black w-10 h-10"
+                  />
+                ) : (
+                  <Bars3Icon
+                    onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                    className="block md:hidden text-black w-10 h-10"
+                  />
+                )}
+              </>
+            )}
+            {session && (
+              <UserSessionImage
+                session={session}
+                onClick={() => signOut()}
+                className={"hidden md:block "}
+              />
+            )}
+          </div>
         </nav>
       </header>
       {navigation?.length && (
@@ -67,6 +78,13 @@ export default function Header({ logo, navigation }: HeaderProps) {
             stacked={true}
             onClick={() => setIsMobileNavOpen(false)}
           />
+          {session && (
+            <UserSessionImage
+              session={session}
+              onClick={() => signOut()}
+              className={"absolute bottom-20 mb-5 right-5"}
+            />
+          )}
         </Modal>
       )}
     </>
